@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@100&display=swap');
+
+
+body {
+    background-color: black;
+}
+
+h1 {
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    font-size: 40px;
+    color: ghostwhite;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 100;
+}
+
+h3 {
+    color: black;
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+}
+
+#chatbox {
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 60px;
+}
+
+#userInput {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 60px;
+}
+
+#textInput {
+    width: 87%;
+    border: none;
+    border-bottom: 3px solid #009688;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px;
+    height: 2em;
+    padding: 1px 10px;
+}
+
+#buttonInput {
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 0.5ex 1ex;
+    font-size: 17px;
+    background: whitesmoke;
+    border: none;
+    vertical-align: top;
+}
+
+.userText {
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px;
+    text-align: right;
+    line-height: 30px;
+    height: 2em;
+}
+
+.userText span {
+    background-color: #009688;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.botText {
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px;
+    text-align: left;
+    line-height: 30px;
+    height: 2em;
+}
+
+.botText span {
+    background-color: #EF5350;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+#tidbit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+}
