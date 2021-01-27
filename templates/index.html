@@ -5,8 +5,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>MarianNMT+BlabberBot PoC</h1>
+<h1>NMT+DRG PoC</h1>
+<select id="modelName" name="model">
+    <option value="dialoggpt" selected>Microsoft DialogGPT</option>
+    <option value="blenderbot">FaceBook BlenderBot</option>
+</select>
 <div>
+    <div id="history" style="display:none">
+    </div>
     <div id="chatbox">
         <p class="botText"><span>Cześć, pogadamy?</span></p>
     </div>
@@ -15,18 +21,35 @@
         <input id="buttonInput" type="submit" value="Wyślij">
     </div>
     <script>
+        function clearChat() {
+            $('#chatbox').empty();
+            $("#chatbox").append('<p class="botText"><span>Cześć, pogadamy?</span></p>');
+            $("#history").val("");
+            $("#textInput").val("");
+        }
+
         function getBotResponse() {
             var rawText = $("#textInput").val();
+            var model = $("#modelName").val();
+            var history = $("#history").val();
             var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
             $("#textInput").val("");
             $("#chatbox").append(userHtml);
+
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-            $.get("/get", {msg: rawText}).done(function (data) {
-                var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            $.get("/get", {msg: rawText, model: model, history: history}).done(function (e) {
+                data = jQuery.parseJSON(e);
+
+                var botHtml = '<p class="botText"><span>' + data.reply + '</span></p>';
                 $("#chatbox").append(botHtml);
+                $("#history").val(data.history)
                 document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
             });
         }
+
+        $("#modelName").change(function (){
+            clearChat();
+        })
 
         $("#textInput").keypress(function (e) {
             if (e.which == 13) {

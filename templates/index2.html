@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>MarianNMT+BlabberBot PoC</h1>
+<div>
+    <div id="userInput">
+        <input id="textInput" type="text" name="msg" placeholder="Wiadomość">
+        <input id="buttonInput" type="submit" value="Zacznij">
+    </div>
+    <div id="chatbox">
+    </div>
+
+    <script>
+        function getBotResponse() {
+            var rawText = $("#textInput").val();
+            $("#textInput").val("");
+            $("#chatbox").empty();
+
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            $.get("/get2", {msg: rawText}).done(function (data) {
+                var texts = data.split('|');
+                var i=0;
+                for (i = 0; i < texts.length; i++) {
+                    if (i%2==0) {
+                        var botHtml = '<p class="botText"><span>' + texts[i] + '</span></p>';
+                        $("#chatbox").append(botHtml);
+                    } else {
+                        var userHtml = '<p class="userText"><span>' + texts[i] + '</span></p>';
+                        $("#chatbox").append(userHtml);
+                    }
+                    document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+                }
+            });
+        }
+
+        $("#textInput").keypress(function (e) {
+            if (e.which == 13) {
+                getBotResponse();
+            }
+        });
+        $("#buttonInput").click(function () {
+            getBotResponse();
+        })
+    </script>
+</div>
+</body>
+</html>
