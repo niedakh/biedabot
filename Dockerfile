@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 
 MAINTAINER Piotr Szymanski "niedakh@gmail.com"
 
+EXPOSE 5000
+
 RUN apt-get update -y && \
     apt-get install -y python3-pip python3-dev
 
