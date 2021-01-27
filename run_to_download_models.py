@@ -1,5 +1,6 @@
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 from transformers import MarianMTModel, MarianTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 def main():
     dialogpt_tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-large")
